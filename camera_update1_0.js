@@ -40,7 +40,7 @@
 		hover				: true,	//true, false. Puase on state hover. Not available for mobile devices
 				
 		loader				: 'bar',	//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)
-										// UPDATE - changed default to bar to appease older IE - with no .browser function new JQUERY lib - us 3rd party to determine before function call
+										// UPDATE - changed default to bar to appease IE9 with no .browser function new JQUERY lib - us 3rd party to determine before function call
 		
 		loaderColor			: '#eeeeee', 
 		
@@ -80,6 +80,8 @@
 		readDir				: '',	// directory from which to read images   ex: '../media/images/large/'
 		
 		readThumbs			: '',	// directory from which to read thumbnails	ex: '../media/images/large/'
+
+		readPrepend			: '',	// prepend to readThumbs and readDir needed for varying relative paths
 /* ---------------------------- */
 
 		rows				: 4,
@@ -199,7 +201,7 @@
 	if(opts.readDir.length > 0)
 	{
 		$.ajax({
-			url:'http://YOUR DOMAIN NAME/getDir.php',
+			url:'http://www.YOUR DOMAIN.com/getDir.php',
 			data:{'getDir':opts.readDir},
 			dataType:'json',
 			async:false,
@@ -216,16 +218,16 @@
 							{
 								var file = opts.readDir + files[i];
 								var trueFilePath = file.split('../');
-								allImg.push(trueFilePath[1]);								
+								allImg.push(opts.readPrepend + trueFilePath[1]);								
 
 								if(opts.readThumbs.length > 0)
 								{
 									var thumbs = opts.readThumbs + files[i];
 									var trueThumbPath = thumbs.split('../');
-									allThumbs.push(trueThumbPath[1]);
+									allThumbs.push(opts.readPrepend + trueThumbPath[1]);
 								}
 								else allThumbs.push('');
-								
+
 								allLinks.push('');
 								allTargets.push('');
 								allPor.push('');
