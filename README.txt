@@ -5,6 +5,7 @@ NOTE: This update is provided by Geoff Squires, and NOT by the original author o
 to know about the alterations that have been made
 
 
+** This version is not supported by me. I simply took the additions posted to the google groups and combined them into one package.**
 
 
 RELEASE NOTES:
